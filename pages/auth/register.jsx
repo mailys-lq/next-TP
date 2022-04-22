@@ -8,6 +8,7 @@ const register = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
     
     async function register() {
@@ -16,6 +17,7 @@ const register = () => {
             {
               email: email,
               password: password,
+              name: name,
             },
         );
         Cookies.set("token", result.data.token);
@@ -31,6 +33,8 @@ const register = () => {
                 <a><h1>Home</h1></a>
             </Link>
             <form action="post">
+                <label htmlFor="name-input-register">Name</label><br/>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} id='name-input-register'/><br/>
                 <label htmlFor="email-input-register">Email</label><br/>
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} id='email-input-register'/><br/>
                 <label htmlFor="password-input-register">Mot de passe</label><br/>

@@ -14,7 +14,9 @@ const posts = () => {
         console.log(result.data.posts)
         setPostsData(result.data.posts)
     }
-
+    const createPost = async () => {
+        const result = await axios.get('/api/posts/createPosts')
+    }
     useEffect(() => {
         getPosts()
     }, [setPostsData])
@@ -32,6 +34,8 @@ const posts = () => {
             <Link href="/">
                 <a><h1>Home</h1></a>
             </Link>
+
+            <button onClick={() => createPost()}>Créer un post</button>
             {posts?.map((post, i) => (
                     <div key={post._id}>
                         <h2>Titre : {post.title}</h2>

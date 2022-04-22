@@ -1,6 +1,7 @@
 import prisma from "../../../lib/prisma.ts";
 
 const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
 
 
 export default async (req, res) => {
@@ -16,7 +17,6 @@ export default async (req, res) => {
                 ...data,
             },
         });
-
         const token = jwt.sign({user: {
             email: data.email
         }}, process.env.JWT_KEY);
