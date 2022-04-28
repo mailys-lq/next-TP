@@ -3,16 +3,13 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie'
-// import { useUserContext } from "../../context/UserContext";
 
 import { useRouter } from 'next/router'
 const login = () => {
 
-    // const {setUser} = useUserContext();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter()
-
 
     async function logInFetchRequest() {
 
@@ -25,7 +22,6 @@ const login = () => {
         );
         Cookies.set("token", result.data.token);
         console.log(result.status);
-        // setUser(result.data.user);
 
         if(result.status === 200) {
             router.push('/posts/posts')

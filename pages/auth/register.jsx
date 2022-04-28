@@ -17,10 +17,10 @@ const register = () => {
             {
               email: email,
               password: password,
-              name: name,
             },
         );
         Cookies.set("token", result.data.token);
+    
 
         console.log(result);
     }

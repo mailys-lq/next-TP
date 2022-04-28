@@ -1,10 +1,9 @@
 import Link from 'next/link';
-
-// import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
     // const [data, setData] = useState(); 
-
+    
     // const getPost = async () => {
     //     const res = await fetch('http://jsonplaceholder.typicode.com/posts')
     //     .then((res) => res.json())
@@ -12,6 +11,10 @@ export default function Home() {
     // }
 
     // getPost()
+
+
+
+
 
     return( 
         <div>
