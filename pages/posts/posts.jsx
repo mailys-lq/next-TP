@@ -44,7 +44,11 @@ const posts = () => {
             <button onClick={() => logout()}>Déconnexion</button>
 
             <Link href="/posts/createPost">
-                <a>Create post </a>
+                <a>Créer un poste </a>
+            </Link>
+
+            <Link href="/teams/teams">
+                <a>Lister les teams </a>
             </Link>
             {posts?.map((post, i) => (
                     <div key={post._id}>

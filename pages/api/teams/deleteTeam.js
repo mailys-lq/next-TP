@@ -5,14 +5,14 @@ export default async (req, res) => {
     console.log(data)
     try {
         console.log('coucou')
-        const deletePost = await prisma.post.delete({
+        const deleteTeam = await prisma.team.delete({
             where: {
               id: data.id,
             },
           })
-        console.log(deletePost)
-        res.status(200).json({ deletePost });
+        console.log(deleteTeam)
+        res.status(200).json({ deleteTeam });
     } catch (err) {
-        res.status(403).json({ err: "Erreur dans la suppression du post" });
+        res.status(403).json({ err: "Erreur dans la suppression de la team" });
     }
 }

@@ -7,17 +7,19 @@ export default async (req, res) => {
     console.log(data)
     console.log(data.token)
     try {        
-        const tokenVerify = jwt.verify(data.token, 'user.id');
-        
-        console.log(tokenVerify)
+
+        const tokenVerify = jwt.verify(data.token, process.env.JWT_KEY);
+        req.userId = tokenVerify.user.id;
+        console.log(req.userId)
 
         console.log('coucou1')
 
 
         const post = await prisma.post.create({
             data: {
-                ...data,
-                
+                title: data.title,
+                description: data.description,
+                authorId: req.userId
             }
         })
         console.log(post)
