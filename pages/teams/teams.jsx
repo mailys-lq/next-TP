@@ -6,32 +6,31 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 
 
-const posts = () => {
+const teams = () => {
 
-    const [posts, setPostsData] = useState(); 
+    const [teams, setTeamData] = useState(); 
     const router = useRouter();
     
-    const getPosts = async () => {
-        const result = await axios.get('/api/posts/getPosts')
-        console.log(result.data.posts)
-        setPostsData(result.data.posts)
+    const getTeams = async () => {
+        const result = await axios.get('/api/teams/getTeams')
+        console.log(result.data.teams)
+        setTeamData(result.data.teams)
     }
     useEffect(() => {
-        getPosts(); 
+        getTeams(); 
         
         if(!Cookies.get('token')) {
             router.push('/')
         }
-    }, [setPostsData])
+    }, [setTeamData])
 
 
     const handleClick = (id) => {
-        router.push(`/posts/${id}`)
+        router.push(`/teams/${id}`)
     }
 
-    const deletePost = async (id) => {
-        console.log(id)
-        const result = await axios.delete(`/api/posts/deletePost/${id}`)
+    const deleteTeam = async (id) => {
+        const result = await axios.delete('/api/teams/deleteTeam', {id:id})
     }
     
     const logout = async () => {
@@ -50,20 +49,19 @@ const posts = () => {
             <button onClick={() => logout()}>Déconnexion</button>
 
             <Link href="/posts/createPost">
-                <a>Créer un poste </a>
+                <a>Créer une team </a>
             </Link>
 
             <Link href="/teams/teams">
                 <a>Lister les teams </a>
             </Link>
-            {posts?.map((post, i) => (
+            {teams?.map((post, i) => (
                     <div key={post._id}>
-                        <h2>Titre : {post.title}</h2>
-                        <p>Description :</p>
-                        <p>{post.description}</p>
-                        <p>Posté le : {post.createdAt.slice(0, 10)}</p>
-                        <button onClick={() => handleClick(post.id)}>Voir</button>
-                        <button onClick={() => deletePost(post.id)}>Supprimer</button>
+                        <h2>Nom de la team : {post.name}</h2>
+                        <p>{teams.members}</p>
+                        <p>Créé le : {team.createdAt.slice(0, 10)}</p>
+                        {/* <button onClick={() => handleClick(team.id)}></button> */}
+                        <button onClick={() => deleteTeam(team.id)}>Supprimer</button>
                     </div>
                 
             ))}
@@ -71,4 +69,4 @@ const posts = () => {
     );
 };
 
-export default posts;
+export default teams;

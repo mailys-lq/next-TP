@@ -5,7 +5,7 @@ export default async (req, res) => {
 
     const { id } = req.query;
 
-    const result = await prisma.post.findUnique({
+    const result = await prisma.team.findUnique({
         where: {
             id: parseInt(id)
         },
@@ -16,7 +16,7 @@ export default async (req, res) => {
     res.status(200).json(result);
 
     } catch (err) {
-        res.status(403).json({err:'Erreur post id'})
+        res.status(403).json({err:'Erreur team id'})
 
     }
     
